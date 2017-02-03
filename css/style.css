@@ -41,7 +41,7 @@ html {
   color: rgba(0,0,0,0.8);
 }
 .container {
-  width: 800px;
+  width: 880px;
 }
 @media (max-width: 767px) {
   .container {
@@ -610,7 +610,7 @@ a.social-link:hover {
   position: fixed;
   top: 0px;
   margin-top: 15%;
-  left: calc(50% + 350px);
+  left: calc(50% + 420px);
 }
 .toc ol {
   list-style-type: none;
