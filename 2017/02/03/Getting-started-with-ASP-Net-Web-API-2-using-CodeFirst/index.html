@@ -1,0 +1,774 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Getting started with ASP.Net Web API 2 using CodeFirst | 技术交流</title>
+    <meta name="author" content="wwmin">
+    
+    <meta name="description" content="wwmin blog node.js vue arcgis js api map">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Getting started with ASP.Net Web API 2 using CodeFirst"/>
+    <meta property="og:site_name" content="wwmin的博客"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="wwmin的博客" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">wwmin的博客</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://7xt8vj.com1.z0.glb.clouddn.com/001.png" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">wwmin</p>
+                        <p class="desc">Web前端/node/webGIS/vue/技术宅</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Getting started with ASP.Net Web API 2 using CodeFirst</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2017-02-03T07:31:15.000Z"><a href="/2017/02/03/Getting-started-with-ASP-Net-Web-API-2-using-CodeFirst/">2017-02-03</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/C/" class="chip pink lighten-1">C#</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    
+</div>
+
+
+            <div class="entry pink-link-context">
+                <p>A basic tutorial to build and consume RESTful services using ASP.Net Web API 2 and Entity Framework Code First approach.<br>Introduction<br>In this article I will show a complete walk through of building Restful services using asp.net WebAPI 2 and Entity Framework Code first approach.<br>Background<br>Asp.Net WebAPI is framework for building &amp; consuming Http services to support broad range of devices including browsers, tablet, mobile etc. It provides a content negotiation feature with the help of which the api can give response based on the Content type requested. Most common content types used are JSON and XML.</p>
+<p>It is built on the top of ASP.NET MVC and contains some of the MVC features such as routing, controllers, action, filter, model binders, IOC container or dependency injection.</p>
+<p>Key Concepts</p>
+<p>Api services are actually controllers. All processing actually takes place in the controller class.<br>Leverages MVC features.<br>Routing<br>Model Binding<br>Action Filters<br>Uses convention over configuration<br>HttpResponseMessage with proper accepts header and status code.<br>Built in media formatters for XML and JSON response<br>Using the code<br>In this article I will showing a complete walkthrough for creating RESTfull services using Asp.Net WebAPI 2 and Entity Framework Code first approach for all database related operations.</p>
+<p>We will be developing a simple ProductReview services with two tables Product and Reviews as a Sample application to get an understanding about Web API.</p>
+<p>We will be using Visual Studio 2013 and Entity Framework “Code First approach” where we’ll define our model objects using “Plain Old CLR Objects” POCO.</p>
+<p>Let start by selecting a adding a new project in Visual Studio 2013. Goto File –&gt; New –&gt; Project , on the left select Web and ASP.NET Web Application.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_Step_1.png" alt=""></p>
+<p>Choose the WebAPI template from the dialog box shown.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_Step2.png" alt=""></p>
+<p>After this step Visual Studio creates a new sample WebAPI project template with all necessary files.</p>
+<p>Adding Models classes for Database</p>
+<p>In this section we will set up the Database using EntityFramework codefirst approach. We will be using two tables:</p>
+<p>Products and<br>Reviews<br>With code first we will be adding two Model classes one for Products and another for Reviews. In the project, goto Models folder and add the following two model classes:</p>
+<p>public class Product<br>    {<br>        public int ProductId { get; set; }</p>
+<pre><code>    [Required]
+    public string Name { get; set; }
+
+    public string Category { get; set; }
+
+    public int Price { get; set; }
+
+    //Navigation Property
+    public ICollection&lt;review&gt; Reviews { get; set; }
+}
+</code></pre><p><br>public class Review<br>    {<br>        public int ReviewId { get; set; }</p>
+<pre><code>    public int ProductId { get; set; }
+
+    [Required]
+    public string Title { get; set; }
+
+    public string Description { get; set; }
+
+    //Navigation Property
+    public Product Product { get; set; }
+}
+</code></pre><p>To explain in EntityFramework code first approach, it uses these models to create the corresponding tables. According to convention for both the Models the Id property will become the Primary key for that table.</p>
+<p>Here we are considering a One - Many relationship between a Products and Reviews table(assuming a product can have multiple reviews).</p>
+<p>So the Products model is having a navigation property which is a collection and refers to the Review. Similarly in Review table we have a navigation property for a Product(which is not a collection, as a review can be associated to only one prpoduct). Review table contains a property ProductId which is the Foreign key for the table.</p>
+<p>Adding the Web API controller class</p>
+<p>Here we are going to add a Web API controller class to facilitate all the CRUD(create, read, update and delete) operations with the database entities. </p>
+<p>A WebApi controller class is the place were all the processing is done.</p>
+<p>At this point within the Project inside the Controllers folder there’s a ValuesController. We don’t need this control as it just contains an example of a Web API controller.</p>
+<p>Delete the ValuesController class and Build the project.</p>
+<p>N.B: Please make sure that you have build the project. In the next step we will be adding a Web API controller by scaffolding and VS requires a compiled assembly to do so.</p>
+<p>Next, right click on the controllers folder in the solution explorer and goto Add then Controller</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_Step4.png" alt=""></p>
+<p>After this a new dialog is shown asking for Add Scaffold. Select Web API2 Controller with actions, using Entity Framework.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_Step5.png" alt=""></p>
+<p>After clicking the add button an Add Controller dialog box is shown. </p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_Step6.png" alt=""></p>
+<p>Select the Model class for which we are going to add a controller.  In our case this is Product. Select the DataContext class default name.</p>
+<p>This create two classes in the Project:</p>
+<p>Controllers/ProductsController.cs : This represents the Web API controller that manages all the basic CRUD operation using RESTAPI.<br>Models/ProductReviewsContext.cs : Represents the derived context that manages all the data operations with entities during runtime. It derives from System.Data.Entity.DbContext and exposes a generic type DbSet<tentity> for each class in the Models.<br>Repeat the same steps to add a ReviewsController by scaffolding the Review Model class.</tentity></p>
+<p>Setting up the Database </p>
+<p>Now goto Tools -&gt; Nuget Package Manager and select Package Manager Console. Inside package manager console dialog box execute the following command.</p>
+<p>Enable-Migrations<br>After running this command, it adds a Migrations folder to our project. This Migrations folder contains a file:</p>
+<p>Configuration.cs class file : This class contains methods to configure the Database migrations. Using database migrations, Entity Framework can easily use the Model classes define in the project to create the database.</p>
+<p>Seeding the Database</p>
+<p>The configuration.cs class contains a Seed method which is used to insert/update data during database initialization process. A commented out example code snippet for Adding data is already present inside the Seed method of Configuration class.</p>
+<p>We will be modifying the Seed method to add some test data for Product and Review entities.</p>
+<p>Add the following code in the Configuration.Seed method:</p>
+<p>context.Products.AddOrUpdate(p =&gt; p.ProductId,<br>                new Product { Name = “Product 1”, Category = “Category 1”, Price = 200 },<br>                new Product { Name = “Product 2”, Category = “Category 2”, Price = 500 },<br>                new Product { Name = “Product 3”, Category = “Category 3”, Price = 700 }<br>                );</p>
+<p>context.Reviews.AddOrUpdate(r =&gt; r.ReviewId,<br>                new Review {Title = “Review 1”, Description = “Test review 1”, ProductId = 1},<br>                new Review {Title = “Review 2”, Description = “Test review 2”, ProductId = 1}<br>                );<br>This uses a AddOrUpdate() which adds a new record if not present and updates an existing record if already present.</p>
+<p>Next in the Package Manager console execute the following command:</p>
+<p>First,</p>
+<p>Add-Migration Initial<br>The above command generates the code to create the Database for the Models. </p>
+<p>Update-Database<br>This command excutes the code generated by above “Add-Migration Initial” command and creates the database.</p>
+<p>N.B: By default the database is created using localDb. </p>
+<p>At this point in Web.Config ConnectionStrings section the connection string points to LocalDb.</p>
+<p><add name="ProductReviewsContext" connectionstring="Data Source=(localdb)\v11.0; Initial Catalog=ProductReviewsContext-20140929010853; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|ProductReviewsContext-20140929010853.mdf" providername="System.Data.SqlClient"><br>This same connection string can be changed before executing the above commands to point to Sql Server Express instance to create the Database tables in Microsoft Sql Server. </add></p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_Step8.png" alt=""></p>
+<p>Now the Database is created and can be seen in the server explorer window of Visual Studio.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_step9.png" alt=""></p>
+<p>To view data right click on any table and click show data.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_Step10.png" alt=""></p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/WebApi_Step11.png" alt=""></p>
+<p>Running and testing the application for basic CRUD operations</p>
+<p>Routing in ASP.NET Web API</p>
+<p>Web API uses routing to match uniform resource identifiers (URIs) to various actions. The WebApiConfig file, located inside the App_Start node in Solution Explorer, defines the default routing mechanism used by Web API. The mechanism is based on a combination of HTTP method, action, and attribute. However, we can define our own routing mechanism to support meaningful URIs.</p>
+<p>The default routing specified is as follows:</p>
+<p>config.Routes.MapHttpRoute(<br>                name: “DefaultApi”,<br>                routeTemplate: “api/{controller}/{id}”,<br>                defaults: new { id = RouteParameter.Optional }<br>            );<br>The default route template begins with the keyword “api” so as to avoid any conflicts with MVC routing.</p>
+<p>Understanding how routing works in Asp.Net Web API </p>
+<p>When the Web API receives an Http request, it tries to first match with the default route template i.e “api/{controller}/{id}”. If there is no match then it returns a 404 not found error.</p>
+<p>Once the request is matched:</p>
+<p>The request is forwarded to the Controller defined in the request. Let’s say we have a request for “api/products” then the “ProductsController” is invoked.<br>To find the action WebAPI looks for the requested method and then looks for the action whose name begins with the HttpMethod name.<br>Say for example: For a GET request “api/products”, web API looks for an action starting with Get Http verb like GetProducts(). The same applies for all verbs POST, PUT and DELETE.<br>For the other placeholder {id} these are mapped to actions parameter.<br>Like for a requested url “api/products/1” this is mapped to action method GetProductById(int id)<br>I will be using a Google Chrome extension called Postman to check the response we get by the API. Postman is a very good extension to create Http requests and consume api services with multiple options available. Please download the extension from here.</p>
+<p>Retrieve all product details(GET): </p>
+<p>From the Visual studio run the application selecting Google Chrome browser. Launch the Postman app in the chrome and enter a Url like:</p>
+<p>GET - <a href="http://localhost:53811/api/products" target="_blank" rel="external">http://localhost:53811/api/products</a>  : This will list out all the Products in the Database. When this url is requested the path is mapped to GetProducts() action of the ProductsController.</p>
+<p>// GET: api/Products<br> public IQueryable<product> GetProducts()<br> {<br>     return db.Products;<br> }<br>The response in the Postman window we get list of all products in JSON format.</product></p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/TestApi1.png" alt=""></p>
+<p>If you notice all Products reviews are coming as null because EF is not able to load the related entries.</p>
+<p>Lets try updating the GetProducts() action method to load Review Data.</p>
+<p>// GET: api/Products<br> public IQueryable<product> GetProducts()<br> {<br>     return db.Products.Include(p =&gt; p.Reviews);<br> }<br>Again executing this same requests <a href="http://localhost:53811/api/products" target="_blank" rel="external">http://localhost:53811/api/products</a> generates the following error.</product></p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/Test2.png" alt=""></p>
+<p>The problem here is when we defined the Product class we included a navigation property for Reviews:</p>
+<p>//Navigation Property<br> public ICollection<review> Reviews { get; set; }<br>and we also included a navigation property for Product in Review model class.</review></p>
+<p>//Navigation Property<br> public Product Product { get; set; }<br>and when we try to load the data for related entities it creates a circular object graph.</p>
+<p>As a result of this when the JSON or XML formatter tries to load and serialize the data both throws different exception.</p>
+<p>To overcome this error, we will be using DTO(Data transfer Objects) class to get all data. Add the following new DTO class within Models folder.</p>
+<p>public class ProductDetailsDto<br>{<br>    public string Name { get; set; }</p>
+<pre><code>public string Category { get; set; }
+
+public int Price { get; set; }
+
+public List&lt;Review&gt; Reviews { get; set; }
+</code></pre><p>}<br>Goto Controllers -&gt; ProductsController.cs -&gt; GetProducts() action and add the following code:</p>
+<p>// GET: api/Products<br> public IList<productdetailsdto> GetProducts()<br> {<br>     return db.Products.Select(p =&gt; new ProductDetailsDto<br>     {<br>         Name = p.Name,<br>         Category = p.Category,<br>         Price = p.Price,<br>         Reviews = p.Reviews.ToList()<br>     }).ToList();<br> }<br>Launch postman homepage and enter the same URL <a href="http://localhost:53811/api/products" target="_blank" rel="external">http://localhost:53811/api/products</a>. Following is the response we get which consist of both Product and related product reviews data.</productdetailsdto></p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/Test3.png" alt=""></p>
+<p>Get the details for a product</p>
+<p>Within the Postman app enter the Url <a href="http://localhost:53811/api/products/1" target="_blank" rel="external">http://localhost:53811/api/products/1</a>. This invokes the GetProduct(int id) action of the Products controller where the placeholder id values 1 in the request is mapped to the Parameter of GetProduct(int id) action.</p>
+<p>// GET: api/Products/5<br> [ResponseType(typeof(Product))]<br> public IHttpActionResult GetProduct(int id)<br> {<br>     Product product = db.Products.Find(id);<br>     if (product == null)<br>     {<br>         return NotFound();<br>     }</p>
+<pre><code>return Ok(product);
+</code></pre><p> }<br>The response we get is a single Product details.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/Test4.png" alt=""></p>
+<p>Create a new Product (CREATE)</p>
+<p>We will create a POST request to add a new Product to the Database. </p>
+<p>In the Postman page select the POST verb from the drop down -&gt; Click Headers button at the top  -&gt; Set a header Content-Type : application/json. </p>
+<p>Select the raw tab and enter a product details in JSON format. Ex:</p>
+<p>{<br>        “Name”: “Product 4”,<br>        “Category”: “Category 4”,<br>        “Price”: 200,<br>        “Reviews”: [<br>            {<br>                “ReviewId”: 1,<br>                “ProductId”: 1,<br>                “Title”: “Review 1”,<br>                “Description”: “Test review 1”,<br>                “Product”: null<br>            },<br>            {<br>                “ReviewId”: 2,<br>                “ProductId”: 1,<br>                “Title”: “Review 2”,<br>                “Description”: “Test review 2”,<br>                “Product”: null<br>            }<br>        ]<br>    }<br>Enter the url <a href="http://localhost:53811/api/products" target="_blank" rel="external">http://localhost:53811/api/products</a> and click Send button.</p>
+<p>The request is mapped to the action PostProduct() in ProductsController since the requested method is of type Post.</p>
+<p>// POST: api/Products<br>[ResponseType(typeof(Product))]<br>public IHttpActionResult PostProduct(Product product)<br>{<br>    if (!ModelState.IsValid)<br>    {<br>        return BadRequest(ModelState);<br>    }</p>
+<pre><code>db.Products.Add(product);
+db.SaveChanges();
+
+return CreatedAtRoute(&quot;DefaultApi&quot;, new { id = product.ProductId }, product);
+</code></pre><p>}</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/Test_Api5.png" alt=""></p>
+<p>To verify the data is added to the Database or not send a Get request to <a href="http://localhost:53811/api/products" target="_blank" rel="external">http://localhost:53811/api/products</a>.</p>
+<p>Updating a Product details (PUT)</p>
+<p>This is similar to the POST method. In this we will be sending a updated product JSON object to update an existing Product details. The only difference here is with the URL. The requested URl will be in the form:</p>
+<p><a href="http://localhost:53811/api/products/1" target="_blank" rel="external">http://localhost:53811/api/products/1</a>  , </p>
+<p>where Id parameter is passed to match the product to be updated. The action method in ProductsController is as follows:</p>
+<p>// PUT: api/Products/5<br>[ResponseType(typeof(void))]<br>public IHttpActionResult PutProduct(int id, Product product)<br>{<br>    if (!ModelState.IsValid)<br>    {<br>        return BadRequest(ModelState);<br>    }</p>
+<pre><code>if (id != product.ProductId)
+{
+    return BadRequest();
+}
+
+db.Entry(product).State = EntityState.Modified;
+
+try
+{
+    db.SaveChanges();
+}
+catch (DbUpdateConcurrencyException)
+{
+    if (!ProductExists(id))
+    {
+        return NotFound();
+    }
+    else
+    {
+        throw;
+    }
+}
+
+return StatusCode(HttpStatusCode.NoContent);
+</code></pre><p>}<br>Lets test this using the same Postman extension. Compose a new request with URL <a href="http://localhost:53811/api/products/1" target="_blank" rel="external">http://localhost:53811/api/products/1</a> for updating the details of the first Product.</p>
+<p>Set the header as Content-Type: application/json.</p>
+<p>Add the following updated test JSON object in the raw tab of request body.</p>
+<p>{<br>    “ProductId”: 1,<br>    “Name”: “Updated Product”,<br>    “Category”: “Updated Category”,<br>    “Price”: 1000,<br>    “Reviews”: null<br>}</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/TestApi6.png" alt=""></p>
+<p>Send the request. After successfull completion of this request verify the same product details by sending a simple GET(<a href="http://localhost:53811/api/products/1" target="_blank" rel="external">http://localhost:53811/api/products/1</a>) request to the Api.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/TestApi7.png" alt=""></p>
+<p>Deleting a Product details (DELETE)</p>
+<p>For the delete operation the requested URL is DELETE(<a href="http://localhost:53811/api/products/3" target="_blank" rel="external">http://localhost:53811/api/products/3</a>) where the last parameter is the Id of the Product. The Delete(int id) action inside the ProductsController.cs file maps the Id in the Url to retrieve the Product details and the deletes it from the Database.</p>
+<p>// DELETE: api/Products/5<br>[ResponseType(typeof(Product))]<br>public IHttpActionResult DeleteProduct(int id)<br>{<br>    Product product = db.Products.Find(id);<br>    if (product == null)<br>    {<br>        return NotFound();<br>    }</p>
+<pre><code>db.Products.Remove(product);
+db.SaveChanges();
+
+return Ok(product);
+</code></pre><p>}<br>Lets compose the same to delete a Product with Id 3 from the database using Postman.</p>
+<p>In the URL field enter the request url for Product to be deleted <a href="http://localhost:53811/api/products/3" target="_blank" rel="external">http://localhost:53811/api/products/3</a>. Select the DELETE Http verb from the dropdown and send the request.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/testdelete.png" alt=""></p>
+<p>Now lets try to get the Product with Id = 3.</p>
+<p><img src="https://www.codeproject.com/KB/aspnet/821439/deletesuccess.png" alt=""></p>
+<p>So we got no product at this URL and hence the Product with ID = 3 is now deleted from the Database.</p>
+<p>This wraps up my article where we learnt how to build and consume RESTful services using ASP.Net Web API 2 and Entity Framework Code First.</p>
+<p>License<br>This article, along with any associated source code and files, is licensed under The Code Project Open License (CPOL)</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2017/02/06/总结一些JavaScript开发的著名开源项目/" rel="next" title="总结一些JavaScript开发的著名开源项目">
+    上一篇：总结一些JavaScript开发的著名开源项目
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2017/02/03/初试Code-First/" rel="next" title="初试Code First">
+    下一篇：初试Code First
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="2017/02/03/Getting-started-with-ASP-Net-Web-API-2-using-CodeFirst/" data-title="Getting started with ASP.Net Web API 2 using CodeFirst" data-url="https://wwmin.github.com/2017/02/03/Getting-started-with-ASP-Net-Web-API-2-using-CodeFirst/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'wwmin'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/u/2695517353" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/wwmin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/wwmin" target="_blank">Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=60584400" charset="UTF-8"></script>
+
+
+
+
+
+</body>
+</html>
